@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native'
 import React from 'react'
 
-const OtpOne = () => {
+const OtpOne = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* logo */}
@@ -30,11 +30,15 @@ const OtpOne = () => {
             </View>
 
             {/* Confirm Button */}
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
-                <View style={styles.verifybtn}>
-                    <Text style={{ color: '#fff', fontWeight: 'bold' }}>Verify</Text>
+            <Pressable
+                onClick={navigation.navigate("Desclaimer")}
+            >
+                <View style={{ alignItems: 'center', marginTop: 20 }}>
+                    <View style={styles.verifybtn}>
+                        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Verify</Text>
+                    </View>
                 </View>
-            </View>
+            </Pressable>
 
 
         </View >

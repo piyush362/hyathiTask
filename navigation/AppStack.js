@@ -1,5 +1,4 @@
 import React from 'react';
-// import {createStackNavigator} from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 //screens
@@ -18,7 +17,11 @@ export const AppStack = () => {
                 component={HomePage}
                 options={{ headerShown: false }}
             />
-            <Stack.Screen name="ComingSoon" component={ComingSoon} options={{ headerShown: false }} />
+            <Stack.Screen
+                name="ComingSoon"
+                component={ComingSoon}
+                options={{ headerShown: false }}
+            />
         </Stack.Navigator>
     );
 };

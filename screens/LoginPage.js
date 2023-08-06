@@ -3,20 +3,30 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react'
 import { auth, signInWithEmailAndPassword } from '../firebase.js';
 
+//context
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js';
+
 
 const LoginPage = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const { isLogin, login, logout, } = useContext(AuthContext);
 
-    const handleLogin = () => {
+
+    const handleLogin = async () => {
+        if (!email || !password) {
+            alert('Please fill all the fields')
+            return
+        }
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 alert('User Logged In Successfully')
-                navigation.replace('Desclaimer')
+                login();
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -59,7 +69,6 @@ const LoginPage = ({ navigation }) => {
                 <View style={styles.loginbtn}>
                     <Text
                         style={{ color: '#fff', fontWeight: 'bold' }}
-
                     >
                         Login
                     </Text>

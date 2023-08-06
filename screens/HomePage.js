@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-nati
 import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//context
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js';
+
 
 const TrasactionList = ({ val }) => {
     const colortext = val.type === 'Received' ? '#6E998E' : '#FF0000'
@@ -70,8 +74,15 @@ const transactions = [
 ]
 
 
-
 const HomePage = () => {
+
+    const { isLogin, login, logout, } = useContext(AuthContext);
+
+    const handleLogout = async () => {
+        logout();
+        // await AsyncStorage.removeItem('isLogin');
+    }
+
     return (
         <>
             <View style={styles.container}>
@@ -81,6 +92,7 @@ const HomePage = () => {
                     <Image source={require('../assets/images/hamburger.png')} style={styles.hamburger} resizeMode='contain' />
                     {/* //logout btn */}
                     <Pressable
+                        onPress={handleLogout}
                     >
                         <Text style={{ color: '#fff' }}>LogOut</Text>
                     </Pressable>

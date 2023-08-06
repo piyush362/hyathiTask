@@ -1,5 +1,4 @@
 import React from 'react';
-// import {createStackNavigator} from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 //screens
@@ -25,7 +24,7 @@ export const AuthStack = () => {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="OtpOne"
+                name="OtpPage"
                 component={OtpOne}
                 options={{ headerShown: false }}
             />

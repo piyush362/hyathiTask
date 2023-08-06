@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Pressable, Keyboard, Platform } from 'react-native';
 import { auth, createUserWithEmailAndPassword } from '../firebase.js';
 
+//context
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js';
+
 
 const SignUpPage = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -10,46 +14,31 @@ const SignUpPage = ({ navigation }) => {
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
 
-    const [keyboardOffset, setKeyboardOffset] = useState(0);
+    const { isLogin, login, logout, } = useContext(AuthContext);
+
 
     const handleSignUp = () => {
-        // alert(`Email: ${email}, Password: ${password}`)
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 alert('User Created Successfully')
-                navigation.replace('Desclaimer')
-
+                navigation.navigate('OtpPage')
+                login()
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 alert("errorMessage")
+
                 // ..
             });
     };
 
-    useEffect(() => {
-        if (Platform.OS === 'android') {
-            const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (e) => {
-                setKeyboardOffset(e.endCoordinates.height);
-            });
-
-            const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-                setKeyboardOffset(0);
-            });
-
-            return () => {
-                keyboardDidShowListener.remove();
-                keyboardDidHideListener.remove();
-            };
-        }
-    }, []);
 
     return (
-        <View style={[styles.container, { paddingBottom: keyboardOffset }]}>
+        <View style={[styles.container]}>
             <View>
                 <Text style={styles.heading}>Welcome to Maholo</Text>
                 <Image
@@ -96,7 +85,7 @@ const SignUpPage = ({ navigation }) => {
                 <View style={{ alignItems: 'center', marginTop: 40 }}>
                     <Pressable
                         style={styles.loginbtn}
-                        // onPress={() => navigation.navigate('Desclaimer')}
+                        // onPress={() => navigation.navigate('OtpOne')}
                         onPress={handleSignUp}
 
                     >
