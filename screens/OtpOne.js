@@ -1,7 +1,17 @@
 import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+
+//context
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js';
 
 const OtpOne = ({ navigation }) => {
+
+    const handleOtp = () => {
+        alert('OTP Verified')
+        navigation.navigate('Desclaimer')
+    }
+
     return (
         <View style={styles.container}>
             {/* logo */}
@@ -18,7 +28,11 @@ const OtpOne = ({ navigation }) => {
 
             {/* OTP input Container */}
             <View style={styles.otpInputcontainer}>
-                <TextInput placeholder='4' style={styles.inputField} keyboardType="numeric" />
+                <TextInput
+                    placeholder='4'
+                    style={styles.inputField}
+                    keyboardType="numeric"
+                />
                 <TextInput placeholder='5' style={styles.inputField} keyboardType="numeric" />
                 <TextInput placeholder='7' style={styles.inputField} keyboardType="numeric" />
                 <TextInput placeholder='9' style={styles.inputField} keyboardType="numeric" />
@@ -26,12 +40,13 @@ const OtpOne = ({ navigation }) => {
 
             {/* Resend OTP */}
             <View style={styles.signuptext}>
+                <Text style={{ color: 'green', fontWeight: 'bold' }}>Enter any Dummy OTP </Text>
                 <Text>Did not received code?  <Text style={{ color: '#6E998E', fontWeight: 'bold' }}>Send again.</Text></Text>
             </View>
 
             {/* Confirm Button */}
             <Pressable
-                onClick={navigation.navigate("Desclaimer")}
+                onPress={() => handleOtp()}
             >
                 <View style={{ alignItems: 'center', marginTop: 20 }}>
                     <View style={styles.verifybtn}>
@@ -81,7 +96,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     signuptext: {
-        marginTop: 200,
+        marginTop: 170,
         alignItems: 'center',
     },
     verifybtn: {

@@ -27,6 +27,7 @@ const LoginPage = ({ navigation }) => {
                 const user = userCredential.user;
                 alert('User Logged In Successfully')
                 login();
+                AsyncStorage.setItem("username", JSON.stringify(email));
             })
             .catch((error) => {
                 const errorCode = error.code;

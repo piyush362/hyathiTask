@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
-import React from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react'
 
 //context
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const TrasactionList = ({ val }) => {
@@ -76,11 +76,31 @@ const transactions = [
 
 const HomePage = () => {
 
+    const getUserName = async () => {
+        try {
+            const value = await AsyncStorage.getItem('username')
+            if (value !== null) {
+                setUserName(JSON.parse(value))
+            } else {
+                setUserName('User')
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
     const { isLogin, login, logout, } = useContext(AuthContext);
+    const [userName, setUserName] = useState('User')
+
+    useEffect(() => {
+        getUserName()
+    }, [])
+
 
     const handleLogout = async () => {
+        alert('Logged Out Successfully')
         logout();
-        // await AsyncStorage.removeItem('isLogin');
     }
 
     return (
@@ -102,7 +122,7 @@ const HomePage = () => {
 
                 {/* remaing item */}
                 <View style={{ padding: 20 }}>
-                    <Text style={styles.heading}>Hii, Your Name</Text>
+                    <Text style={styles.heading}>Hii, <Text style={{ color: '#3B5B50' }}>{`${userName} 😊`}</Text></Text>
                     {/* wallet card */}
                     <View style={styles.walletcardContainer}>
                         <Text style={styles.heading}>Your Wallet</Text>

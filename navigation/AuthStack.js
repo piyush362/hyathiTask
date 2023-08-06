@@ -24,13 +24,13 @@ export const AuthStack = () => {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="OtpPage"
-                component={OtpOne}
+                name="Desclaimer"
+                component={Desclaimer}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Desclaimer"
-                component={Desclaimer}
+                name="OtpPage"
+                component={OtpOne}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>

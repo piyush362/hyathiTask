@@ -5,7 +5,17 @@ const dummytext = {
     title: "Lorem ipsum dolor sit amet consectetur. Felis nibh vitae commodo mattis molestie curabitur morbi vestibulum. Ipsum odio sit nisi parturient libero lorem. Nullam justo pellentesque amet sit iaculis ut lectus habitasse. Nunc quis at fames id venenatis aliquam dictum. Mauris bibendum consequat vulputate lorem id non tristique placerat. Risus placerat viverra bibendum aliquet nulla nunc curabitur ullamcorper. Habitasse velit ante egestas libero dolor ut egestas amet. Etiam viverra cursus nulla urna. Dignissim justo dictum ipsum integer lectus. Pellentesque vestibulum accumsan atHabitant a justo mauris urna id pellentesque arcu natoque libero. Amet rhoncus sit semper natoque urna lacus at eleifend dignissim. Ipsum pharetra arcu commodo nunc. Bibendum nunc ultricies ac nisi. Et nullam imperdiet magna pulvinar. Blandit sagittis dignissim orci amet elit ut vitae nulla",
 }
 
+//context
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js';
+
 const Desclaimer = ({ navigation }) => {
+    const { isLogin, login, logout, } = useContext(AuthContext);
+
+    const handleLogin = () => {
+        login();
+    }
+
     return (
         <View style={styles.container}>
             <View>
@@ -22,7 +32,7 @@ const Desclaimer = ({ navigation }) => {
                 </Text>
             </View>
             <Pressable style={{ alignItems: 'center', marginTop: 40 }}
-                onPress={() => navigation.navigate('HomePage')}
+                onPress={() => handleLogin()}
             >
                 <View style={styles.loginbtn}>
                     <Text style={{ color: '#fff', fontWeight: 'bold' }}>Confirm</Text>

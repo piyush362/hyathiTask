@@ -5,6 +5,7 @@ import { auth, createUserWithEmailAndPassword } from '../firebase.js';
 //context
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const SignUpPage = ({ navigation }) => {
@@ -22,9 +23,10 @@ const SignUpPage = ({ navigation }) => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                alert('User Created Successfully')
+                alert('OTP sent Successfully')
                 navigation.navigate('OtpPage')
-                login()
+                AsyncStorage.setItem("username", JSON.stringify(email));
+                // login()
                 // ...
             })
             .catch((error) => {
