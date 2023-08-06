@@ -54,48 +54,65 @@ const transactions = [
         date: '05 Mar 23, 02:30 PM',
         amount: '+ $ 5000.00'
     },
+    {
+        id: 7,
+        type: 'Received',
+        date: '05 Mar 23, 02:30 PM',
+        amount: '+ $ 5000.00'
+    },
+    {
+        id: 8,
+        type: 'Received',
+        date: '05 Mar 23, 02:30 PM',
+        amount: '+ $ 5000.00'
+    },
 ]
 
 
 
 const HomePage = () => {
     return (
-        <View style={styles.container}>
-            {/* Navbar */}
-            <View style={styles.navbar}>
-                {/* hamburger menu */}
-                <Image source={require('../assets/images/hamburger.png')} style={styles.hamburger} resizeMode='contain' />
-                {/* bell icon */}
-                <Image source={require('../assets/images/icon-bell.png')} style={styles.hamburger} resizeMode='contain' />
-            </View>
-
-            {/* remaing item */}
-            <View style={{ padding: 20 }}>
-                <Text style={styles.heading}>Hii, Your Name</Text>
-                {/* wallet card */}
-                <View style={styles.walletcardContainer}>
-                    <Text style={styles.heading}>Your Wallet</Text>
-                    <Image source={require('../assets/images/walletCard.jpg')}
-                        style={styles.walletcard} resizeMode='contain' />
+        <>
+            <View style={styles.container}>
+                {/* Navbar */}
+                <View style={styles.navbar}>
+                    {/* hamburger menu */}
+                    <Image source={require('../assets/images/hamburger.png')} style={styles.hamburger} resizeMode='contain' />
+                    {/* bell icon */}
+                    <Image source={require('../assets/images/icon-bell.png')} style={styles.hamburger} resizeMode='contain' />
                 </View>
 
-                {/* transactions list */}
-                <View style={styles.trasectionContainer}>
-                    {/* bar */}
-                    <View style={styles.trasectionbar}>
-                        <Text style={styles.listtitle}>Recent Transactions</Text>
-                        <Text style={styles.seeallbtn}>See All</Text>
+                {/* remaing item */}
+                <View style={{ padding: 20 }}>
+                    <Text style={styles.heading}>Hii, Your Name</Text>
+                    {/* wallet card */}
+                    <View style={styles.walletcardContainer}>
+                        <Text style={styles.heading}>Your Wallet</Text>
+                        <Image source={require('../assets/images/walletCard.jpg')}
+                            style={styles.walletcard} resizeMode='contain' />
                     </View>
-                </View>
 
-                {/* list */}
-                <ScrollView style={{ marginTop: 20, paddingHorizontal: 8 }}>
+                    {/* transactions list */}
+                    <View style={styles.trasectionContainer}>
+                        {/* bar */}
+                        <View style={styles.trasectionbar}>
+                            <Text style={styles.listtitle}>Recent Transactions</Text>
+                            <Text style={styles.seeallbtn}>See All</Text>
+                        </View>
+                    </View>
+
+                    {/* list */}
+                </View>
+                <ScrollView style={{ marginTop: 5, paddingHorizontal: 20 }}>
                     {transactions.map((val) => {
                         return <TrasactionList val={val} key={val.id} />
                     })}
+                    <View style={{ height: 100, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text>Happy Transactions 😇</Text>
+                    </View>
                 </ScrollView>
             </View>
-        </View>
+        </>
     )
 }
 
@@ -105,6 +122,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 32,
+        backgroundColor: '#fff',
     },
     navbar: {
         backgroundColor: '#6E998E',
