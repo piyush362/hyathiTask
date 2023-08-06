@@ -13,7 +13,11 @@ const Stack = createNativeStackNavigator();
 export const AppStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="main" component={HomePage} options={{ headerShown: false }} />
+            <Stack.Screen
+                name="Homepage"
+                component={HomePage}
+                options={{ headerShown: false }}
+            />
             <Stack.Screen name="ComingSoon" component={ComingSoon} options={{ headerShown: false }} />
         </Stack.Navigator>
     );

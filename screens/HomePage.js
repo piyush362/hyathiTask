@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
 import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const TrasactionList = ({ val }) => {
@@ -78,6 +79,11 @@ const HomePage = () => {
                 <View style={styles.navbar}>
                     {/* hamburger menu */}
                     <Image source={require('../assets/images/hamburger.png')} style={styles.hamburger} resizeMode='contain' />
+                    {/* //logout btn */}
+                    <Pressable
+                    >
+                        <Text style={{ color: '#fff' }}>LogOut</Text>
+                    </Pressable>
                     {/* bell icon */}
                     <Image source={require('../assets/images/icon-bell.png')} style={styles.hamburger} resizeMode='contain' />
                 </View>

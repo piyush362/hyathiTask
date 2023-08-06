@@ -1,7 +1,31 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from 'react'
+import { auth, signInWithEmailAndPassword } from '../firebase.js';
+
 
 const LoginPage = ({ navigation }) => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                alert('User Logged In Successfully')
+                navigation.replace('Desclaimer')
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert("Wrong Email or Password")
+            });
+    }
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>Welcome to Maholo</Text>
@@ -10,15 +34,27 @@ const LoginPage = ({ navigation }) => {
                 style={styles.logo} resizeMode='contain'
             />
             <View style={{ marginTop: 20 }}>
-                <TextInput placeholder='Email' style={styles.inputField} />
-                <TextInput placeholder='Password' style={styles.inputField} />
+                <TextInput
+                    placeholder='Email'
+                    style={styles.inputField}
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                />
+                <TextInput
+                    placeholder='Password'
+                    style={styles.inputField}
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry={true}
+                />
             </View>
             <View style={{ alignItems: 'flex-end', marginTop: 10 }}>
                 <Text style={{ color: '#6E998E', fontWeight: 'bold', paddingVertical: 5 }}>Forgot Password?</Text>
             </View>
 
             <Pressable style={{ alignItems: 'center', marginTop: 40 }}
-                onPress={() => navigation.navigate('Desclaimer')}
+                // onPress={() => navigation.navigate('Desclaimer')}
+                onPress={handleLogin}
             >
                 <View style={styles.loginbtn}>
                     <Text

@@ -13,11 +13,27 @@ const Stack = createNativeStackNavigator();
 
 export const AuthStack = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
-            <Stack.Screen name="SignUpPage" component={SignUpPage} options={{ headerShown: false }} />
-            <Stack.Screen name="OtpOne" component={OtpOne} options={{ headerShown: false }} />
-            <Stack.Screen name="Desclaimer" component={Desclaimer} options={{ headerShown: false }} />
+        <Stack.Navigator >
+            <Stack.Screen
+                name="LoginPage"
+                component={LoginPage}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="SignUpPage"
+                component={SignUpPage}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="OtpOne"
+                component={OtpOne}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Desclaimer"
+                component={Desclaimer}
+                options={{ headerShown: false }}
+            />
         </Stack.Navigator>
     );
 };
